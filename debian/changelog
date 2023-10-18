@@ -1,9 +1,3 @@
-node-handlebars (3:4.7.7+~4.1.0-1) UNRELEASED; urgency=medium
-
-  * update
-
- -- Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>  Wed, 08 Jun 2022 02:14:39 -0400
-
 node-handlebars (3:4.7.7+~4.1.0-1) unstable; urgency=medium
 
   * Team upload
