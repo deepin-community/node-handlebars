@@ -1,7 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: handlebars
 Source: https://handlebarsjs.com/
- https://registry.npmjs.org/@types/handlebars
 
 Files: *
 Copyright: 2011-2019, by Yehuda Katz
@@ -9,10 +8,6 @@ License: Expat
 
 Files: spec/vendor/require.js
 Copyright: 2010-2012, The Dojo Foundation
-License: Expat
-
-Files: types-*/*
-Copyright: Microsoft Corporation
 License: Expat
 
 Files: debian/*

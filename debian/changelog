@@ -1,3 +1,48 @@
+node-handlebars (3:4.7.9-5) unstable; urgency=medium
+
+  * Team upload.
+  * Fix clean target. Closes: #1047614.
+  * Simplify and fine-tune salsa-ci.yml.
+
+ -- Santiago Vila <sanvila@debian.org>  Thu, 09 Apr 2026 09:50:00 +0200
+
+node-handlebars (3:4.7.9-4) unstable; urgency=medium
+
+  * Team upload
+  * Patch source-map-js: also replace source-map in lib/precompiler.js
+    (fixes FTBFS with source-map 0.7+)
+
+ -- Xavier Guimard <yadd@debian.org>  Wed, 01 Apr 2026 13:48:03 +0200
+
+node-handlebars (3:4.7.9-3) unstable; urgency=medium
+
+  * Declare compliance with policy 4.7.4
+  * Replace node-source-map by node-source-map-js
+
+ -- Xavier Guimard <yadd@debian.org>  Tue, 31 Mar 2026 15:02:29 +0200
+
+node-handlebars (3:4.7.9-2) unstable; urgency=medium
+
+  * Team upload
+  * Fix autopkgtest
+
+ -- Xavier Guimard <yadd@debian.org>  Sun, 29 Mar 2026 13:33:16 +0200
+
+node-handlebars (3:4.7.9-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 4.7.9 (Closes: #1132141)
+    Fixes: CVE-2026-33916 CVE-2026-33937 CVE-2026-33938
+           CVE-2026-33939 CVE-2026-33940 CVE-2026-33941
+  * Drop embedded @types/handlebars (included upstream now)
+  * Refresh patches, drop disable-bg-shell-plugin.patch (applied upstream)
+  * Remove amd task from build (requirejs not available)
+  * Fix debian/watch: use handlebars-lang org, add STABLE_VERSION filter
+  * debian/watch version 5
+  * Declare compliance with policy 4.7.3
+
+ -- Xavier Guimard <yadd@debian.org>  Sun, 29 Mar 2026 12:55:47 +0200
+
 node-handlebars (3:4.7.7+~4.1.0-1) unstable; urgency=medium
 
   * Team upload

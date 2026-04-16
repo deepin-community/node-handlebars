@@ -3,7 +3,6 @@ Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.deb
 Uploaders: Pirate Praveen <praveen@debian.org>
 Section: javascript
 Testsuite: autopkgtest-pkg-nodejs
-Priority: optional
 Build-Depends: debhelper-compat (= 13)
  , dh-sequence-nodejs
  , chai <!nocheck>
@@ -22,16 +21,15 @@ Build-Depends: debhelper-compat (= 13)
  , node-grunt-webpack
  , node-neo-async <!nocheck>
  , node-optimist <!nocheck>
- , node-source-map <!nocheck>
+ , node-source-map-js <!nocheck>
  , node-wordwrap <!nocheck>
  , node-xml2js <!nocheck>
  , nodejs
  , webpack (>= 4.0~)
-Standards-Version: 4.6.0
+Standards-Version: 4.7.4
 Vcs-Browser: https://salsa.debian.org/js-team/node-handlebars
 Vcs-Git: https://salsa.debian.org/js-team/node-handlebars.git
 Homepage: https://handlebarsjs.com/
-Rules-Requires-Root: no
 
 Package: handlebars
 Architecture: all
@@ -39,7 +37,7 @@ Multi-Arch: foreign
 Depends: ${misc:Depends}
  , node-neo-async
  , node-optimist
- , node-source-map
+ , node-source-map-js
  , node-wordwrap
  , nodejs
 Breaks: node-typescript-types (<< 20201111~)
