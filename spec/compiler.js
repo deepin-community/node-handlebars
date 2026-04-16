@@ -128,6 +128,146 @@ describe('compiler', function() {
       );
     });
 
+    it('should reject AST with invalid PathExpression depth', function() {
+      shouldThrow(
+        function() {
+          Handlebars.compile({
+            type: 'Program',
+            body: [
+              {
+                type: 'MustacheStatement',
+                escaped: true,
+                strip: { open: false, close: false },
+                path: {
+                  type: 'PathExpression',
+                  data: false,
+                  depth: '0',
+                  parts: ['this'],
+                  original: 'this'
+                },
+                params: []
+              }
+            ]
+          })();
+        },
+        Error,
+        'Invalid AST: PathExpression.depth must be an integer'
+      );
+    });
+
+    it('should reject AST with non-array PathExpression parts', function() {
+      shouldThrow(
+        function() {
+          Handlebars.compile({
+            type: 'Program',
+            body: [
+              {
+                type: 'MustacheStatement',
+                escaped: true,
+                strip: { open: false, close: false },
+                path: {
+                  type: 'PathExpression',
+                  data: false,
+                  depth: 0,
+                  parts: 'this',
+                  original: 'this'
+                },
+                params: []
+              }
+            ]
+          })();
+        },
+        Error,
+        'Invalid AST: PathExpression.parts must be an array'
+      );
+    });
+
+    it('should reject AST with non-string PathExpression part', function() {
+      shouldThrow(
+        function() {
+          Handlebars.compile({
+            type: 'Program',
+            body: [
+              {
+                type: 'MustacheStatement',
+                escaped: true,
+                strip: { open: false, close: false },
+                path: {
+                  type: 'PathExpression',
+                  data: false,
+                  depth: 0,
+                  parts: [1],
+                  original: 'this'
+                },
+                params: []
+              }
+            ]
+          })();
+        },
+        Error,
+        'Invalid AST: PathExpression.parts must only contain strings'
+      );
+    });
+
+    it('should reject AST with invalid BooleanLiteral value type', function() {
+      shouldThrow(
+        function() {
+          Handlebars.compile({
+            type: 'Program',
+            body: [
+              {
+                type: 'MustacheStatement',
+                escaped: true,
+                strip: { open: false, close: false },
+                path: {
+                  type: 'PathExpression',
+                  data: false,
+                  depth: 0,
+                  parts: ['if'],
+                  original: 'if'
+                },
+                params: [
+                  {
+                    type: 'BooleanLiteral',
+                    value: 'true',
+                    original: true
+                  }
+                ]
+              }
+            ]
+          })();
+        },
+        Error,
+        'Invalid AST: BooleanLiteral.value must be a boolean'
+      );
+    });
+
+    it('should ignore loc metadata while validating AST nodes', function() {
+      equal(
+        Handlebars.compile({
+          type: 'Program',
+          meta: null,
+          loc: { source: 'fake', start: { line: 1, column: 0 } },
+          body: [{ type: 'ContentStatement', value: 'Hello' }]
+        })(),
+        'Hello'
+      );
+    });
+
+    it('should accept AST with valid NumberLiteral values', function() {
+      equal(
+        Handlebars.compile(Handlebars.parse('{{lookup this 1}}'))(['a', 'b']),
+        'b'
+      );
+    });
+
+    it('should accept AST with valid BooleanLiteral values', function() {
+      equal(
+        Handlebars.compile(Handlebars.parse('{{#if true}}ok{{/if}}'))({}),
+        'ok'
+      );
+    });
+
     it('can pass through an empty string', function() {
       equal(Handlebars.compile('')(), '');
     });

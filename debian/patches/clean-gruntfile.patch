@@ -5,35 +5,35 @@ Last-Update: 2021-12-13
 
 --- a/Gruntfile.js
 +++ b/Gruntfile.js
-@@ -219,30 +219,9 @@
+@@ -167,29 +167,11 @@
+     'copy:cdnjs'
+   ]);
  
-   this.registerTask('test', ['test:bin', 'test:cov']);
- 
--  grunt.registerTask('bench', ['metrics']);
--
--  if (process.env.SAUCE_ACCESS_KEY) {
--    grunt.registerTask('sauce', ['concat:tests', 'connect', 'saucelabs-mocha']);
--  } else {
--    grunt.registerTask('sauce', []);
--  }
--
--  // Requires secret properties (saucelabs-credentials etc.) from .travis.yaml
+-  // Requires secret properties from .travis.yaml
 -  grunt.registerTask('extensive-tests-and-publish-to-aws', [
 -    'default',
--    'sauce',
+-    'shell:integrationTests',
 -    'metrics',
 -    'publish-to-aws'
 -  ]);
--  grunt.registerTask('on-file-change', [
--    'build',
--    'concat:tests',
--    'test'
--  ]);
+-
+-  grunt.registerTask('on-file-change', ['build', 'concat:tests', 'test']);
 -
    // === Primary tasks ===
-   grunt.registerTask('dev', ['clean', 'connect', 'watch']);
+-  grunt.registerTask('dev', ['clean', 'connect', 'watch']);
 -  grunt.registerTask('default', ['clean', 'build', 'test', 'release']);
+-  grunt.registerTask('test', ['test:bin', 'test:cov']);
+-  grunt.registerTask('bench', ['metrics']);
+-  grunt.registerTask('prepare', ['build', 'concat:tests']);
 +  grunt.registerTask('default', ['clean', 'build']);
-   grunt.registerTask('integration-tests', [
-     'default'
-   ]);
+   grunt.registerTask(
+     'build',
+     'Builds a distributable version of the current project',
+-    ['parser', 'node', 'amd', 'globals']
++    ['parser', 'node', 'globals']
+   );
+-  grunt.registerTask('integration-tests', [
+-    'default',
+-    'shell:integrationTests'
+-  ]);
+ };

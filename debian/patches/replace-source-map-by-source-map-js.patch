@@ -1,0 +1,44 @@
+Description: Replace source-map by source-map-js
+ source-map-js is a maintained fork of source-map, API-compatible with 0.6.x.
+Author: Yadd <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2026-03-31
+
+---
+ lib/precompiler.js    |    2 +-
+ spec/source-map.js    |    2 +-
+ tests/print-script.js |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+--- a/lib/precompiler.js
++++ b/lib/precompiler.js
+@@ -4,7 +4,7 @@
+ import fs from 'fs';
+ import * as Handlebars from './handlebars';
+ import { basename } from 'path';
+-import { SourceMapConsumer, SourceNode } from 'source-map';
++import { SourceMapConsumer, SourceNode } from 'source-map-js';
+ 
+ module.exports.loadTemplates = function(opts, callback) {
+   loadStrings(opts, function(err, strings) {
+--- a/spec/source-map.js
++++ b/spec/source-map.js
+@@ -1,6 +1,6 @@
+ try {
+   if (typeof define !== 'function' || !define.amd) {
+-    var SourceMap = require('source-map'),
++    var SourceMap = require('source-map-js'),
+       SourceMapConsumer = SourceMap.SourceMapConsumer;
+   }
+ } catch (err) {
+--- a/tests/print-script.js
++++ b/tests/print-script.js
+@@ -5,7 +5,7 @@
+   verbose = process.argv[3] === '-v';
+ 
+ var Handlebars = require('./../lib'),
+-  SourceMap = require('source-map'),
++  SourceMap = require('source-map-js'),
+   SourceMapConsumer = SourceMap.SourceMapConsumer;
+ 
+ var template = Handlebars.precompile(script, {
